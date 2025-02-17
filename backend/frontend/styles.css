@@ -1,0 +1,86 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 30px;
+    background: #2c3e50;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 15px 15px 0;
+}
+.icondata{
+	    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.icon span {
+    font-size: 24px;
+    margin-bottom: 0px;
+}
+
+.icon span span {
+    font-size: 12px;
+    margin-bottom: 0px;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+/* Folders and Files Columns */
+.folders, .files {
+    width: 200px;
+    background: #34495e;
+    padding: 20px;
+    color: white;
+    overflow-y: auto;
+    border-radius: 15px 0 0 15px;
+}
+
+.folders div, .files div {
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #2c3e50;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.folders div:hover, .files div:hover {
+    background: #1abc9c;
+}
+
+/* Content Column */
+.content {
+    flex: 1;
+    padding: 20px;
+    background: white;
+    overflow-y: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

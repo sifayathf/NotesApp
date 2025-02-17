@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="app">
+        <div class="sidebar">
+            <div class="icon" onclick="fetchFolders()">
+                <span>📝</span>
+                <span><span>Notes</span></span>
+            </div>
+            <div class="icon">
+                <span>🖼️</span>
+                <span><span>Images<span></span>
+            </div>
+            <div class="icon">
+                <span>🔗</span>
+                <span><span>Links</span></span>
+            </div>
+            <div class="icon">
+                <span>🤖</span>
+                <span><span>AISummaries</span></span>
+            </div>
+        </div>
+        <div class="folders" id="folders"></div>
+        <div class="files" id="files"></div>
+        <div class="content" id="content"></div>
+    </div>
+    <script src="/static/script.js"></script>
+	<script>const foldersDiv = document.getElementById("folders");
+const filesDiv = document.getElementById("files");
+const contentDiv = document.getElementById("content");
+
+async function fetchFolders() {
+    const response = await fetch("http://localhost:8000/folders/");
+    const folders = await response.json();
+    foldersDiv.innerHTML = folders.map(folder => `
+        <div onclick="fetchFiles(${folder.id})">${folder.name}</div>
+    `).join("");
+}
+
+async function fetchFiles(folderId) {
+    const response = await fetch(`http://localhost:8000/files/?folder_id=${folderId}`);
+    const files = await response.json();
+    filesDiv.innerHTML = files.map(file => `
+        <div onclick="fetchContent(${file.id})">${file.name}</div>
+    `).join("");
+}
+
+async function fetchContent(fileId) {
+    const response = await fetch(`http://localhost:8000/files/${fileId}`);
+    const file = await response.json();
+    contentDiv.innerHTML = file.content;
+}
+
+// Initial fetch for folders
+fetchFolders();</script>
+</body>
+</html>
