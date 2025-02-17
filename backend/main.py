@@ -13,6 +13,9 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+# Serve static files (CSS, JS)
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
